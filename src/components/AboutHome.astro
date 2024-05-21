@@ -1,0 +1,32 @@
+---
+import "../styles/components/about-home.css";
+import Button from "./Button.astro";
+import CardTerminal from "../layouts/CardTerminal.astro";
+import CardAbout from "./CardAbout.astro";
+import TitleSpan from "./atoms/TitleSpan.astro";
+---
+
+<section class="about" id="about">
+	<TitleSpan  text1="Who is DEV" span="FOX" text2="?" />
+	<div class="about__container">
+		<CardAbout />
+		<div class="terminal__container">
+			<CardTerminal animation="fade-left">
+				<h3 class="terminal__content terminal__content--h3">≥ Abdelhamed-Mohammed</h3>
+				<p class="terminal__content terminal__content--p">≥ مـغـࢪم ب جـافـا سـكگࢪيبت. ودائمـا اسـعي للـتقدم والتـطويࢪ من نفـسي </p>
+
+				<h3 class="terminal__content terminal__content--h3">
+					≥ <span class="terminal__content terminal__content--span span__dark">ما اللذي يـمـيزني؟</span>
+				</h3>
+				<p class="terminal__content terminal__content--p">
+					≥ انـا<span class="terminal__content--span span__dark">احـب مـا اقـوم بـه بصـدق 💙</span>ونـا اعتقد ان المزج بين البرمجه والمتعه والتࢪفيه لأمر عظيم ونتائجه يمكن ان تكون ساحࢪه 
+					 <span class="terminal__content--span span__dark">
+				</p>
+				<div class="about__contactar">
+					<Button href="/about" text="شاهد المزيد" />
+				</div>
+			</CardTerminal>
+		</div>
+
+	</div>
+</section>

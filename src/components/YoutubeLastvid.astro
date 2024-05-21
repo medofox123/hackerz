@@ -1,0 +1,78 @@
+---
+import "../styles/youtube-last-vid.css";
+import CardTerminal from "../layouts/CardTerminal.astro";
+---
+
+<script>
+   const loader = document.querySelector(".heart__loader");
+  loader.style.display = "block";
+  const loadVideo = (iframe) => {
+    const cid = "UC36_js-krsAHAEAWpEDhHtw";
+    const channelURL = encodeURIComponent(
+      `https://www.youtube.com/feeds/videos.xml?channel_id=${cid}`
+    );
+    const reqURL = `https://api.rss2json.com/v1/api.json?rss_url=${channelURL}`;
+
+    fetch(reqURL)
+      .then((response) => response.json())
+      .then((result) => {
+        const videoNumber = iframe.getAttribute("vnum");
+        const link = result.items[videoNumber].link;
+        const id = link.substr(link.indexOf("=") + 1);
+        iframe.setAttribute(
+          "src",
+          `https://youtube.com/embed/${id}?controls=0&autoplay=1`
+        );
+         // Ocultar el loader después de cargar el video
+      loader.style.display = "none";
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  document.addEventListener("DOMContentLoaded", (e) => {
+    const iframes = document.getElementsByClassName("latestVideoEmbed");
+    for (let i = 0, len = iframes.length; i < len; i++) {
+      loadVideo(iframes[i]);
+    }
+  });
+</script>
+
+<section  class="ytchannel">
+  <h2 class="titulo titulo__dark ytchannel__titulo">
+    Suscribe to my <span class="ytchannel__title-red">Youtube</span> Channel
+    <img class="logo__yt" src="../svg/youtube-solid.svg" alt="Logo Youtube" />
+  </h2>
+
+  <div class="ytchannel__caja">
+    <div class="terminal__content" id="textos">
+      <CardTerminal>
+        <p class="terminal__content terminal__content--p">
+			≥ أنـا اعـتقد ان
+          <span class="terminal__content--span span__dark">
+             افضل وسيله لتعلم شيئ ما واتقـانه هـوا بـتعـليمه للأخࢪين </span
+          >
+        </p>
+        <p class="terminal__content terminal__content--p">
+          ≥ " هذا هو السبب الرئيسي الذي جعلني أقرر بدء في الحساب . ومع ذلك، هناك سبب آخر وهو القدرة على مساعدة الآخرين في حل المشكلات التي واجهتها في وقت ما ولم أتمكن من إيجاد حل لها  <span>❤️</span>.
+        </p>
+        <span class="terminal__content--span span__dark">
+          ≥ بهذه الطريقة، أشعر أنني أساهم بشيء ما في مجتمعي: مجـتمع الـمـطوࢪين.
+        </span>
+      </CardTerminal>
+    </div>
+
+    <div class="vid__container" >
+      <h2 class="vid__titulo">≥ مـن الناس القليلين اللي استفدت منهم️</h2>
+      <img class="heart__loader" src="../svg/loaders/hearts.svg" alt="loader">
+      <iframe
+        class="latestVideoEmbed"
+        vnum="0"
+        width="600"
+        height="340"
+        frameborder="0"
+        allowfullscreen
+        id="ytchannel"
+        ></iframe>
+    </div>
+  </div>
+</section>
